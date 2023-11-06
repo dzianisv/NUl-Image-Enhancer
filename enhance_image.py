@@ -114,6 +114,7 @@ manual_args = image_pth
 parser = argparse.ArgumentParser()
 parser.add_argument("image_pth")
 parser.add_argument("--maxruntime", nargs='?', type=int, help='maximum runtime in seconds (default: 60s)', default=60)
+parser.add_argument("--mode", type=str, choices=['hard', 'soft'], help='processing mode', default='soft')
 args = parser.parse_args([manual_args]) if manual_args else parser.parse_args()
 image_pth = args.image_pth
 maxruntime = args.maxruntime
@@ -121,7 +122,7 @@ maxruntime = args.maxruntime
 #Flags / init / constant
 n_iter = 2000
 max_delay = maxruntime 
-mode = 'soft'
+mode = args.mode
 N_TRY = 20 if mode == 'hard' else 10
 
 # =============================================================================
